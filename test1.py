@@ -53,7 +53,8 @@ def main(argv):
                 usage()
                 sys.exit(2)
         if opt == '-K':
-            lengthKmer = int(arg)
+            kmer = arg
+
         if opt =='-S':
             usage()
             seqname=arg
@@ -64,11 +65,18 @@ def main(argv):
     #store the array
     sequences=readInput(inputFile)
     foundseq = searchseq(seqname,sequences)
-    splitseq=splitedfoundseq(foundseq)
-    GCcont=GC_content(splitseq)
-    print GCcont,"== total count in main"
-    reverse_compliment(splitseq)
 
+    splitseq=splitedfoundseq(foundseq)
+    GCcount=GC_content(splitseq)
+    reversecomp=reverse_compliment(splitseq)
+    kmercount=k_mer(kmer, foundseq)
+
+    print "File:", inputFile
+    print "Seq:", foundseq
+    print "seq length:", len(foundseq)
+    print "Kmer:",kmer
+    print "kmercount:",kmercount
+    print "GC count is :", GCcount,"%"
 
 def searchseq(seqname,sequences):
     for lines in sequences:
@@ -80,31 +88,28 @@ def splitedfoundseq(foundseq):
 
 def GC_content(splitseq):
     count=0
-    print splitseq
     for pos in range(len(splitseq)-1):
         if (splitseq[pos]=="G" and splitseq[pos+1]=="C") or (splitseq[pos]=="C" and splitseq[pos+1]=="G"):
            count=count+1
-           print count, "count of GC"
         elif (splitseq[pos]=="T" and splitseq[pos+1]=="A") or (splitseq[pos]=="A" and splitseq[pos+1]=="T"):
             count = count+1
-            print count,"count of AT"
-    print count,"==total count inside fun"
+    count=count -1
     G_Ccount=(float(count) *100)/len(splitseq)
-    print G_Ccount,"GC =-----"
     return G_Ccount
 
 #possible longest length of the string
-def k_mer(foundseq):
-
-    return 0
+def k_mer(kmer, foundseq):
+    count=0
+    for pos in range(len(foundseq)-len(kmer)-1):
+        if kmer==foundseq[pos:+len(kmer)-1]:
+            count=count+ 1
+    return count
 
 def reverse_compliment(splitseq):
-    print splitseq
     compliment=[]
-    for pos in range(len(splitseq)-1):
+    for pos in range(len(splitseq)):
         if splitseq[pos]=="G":
             compliment.append("C")
-            print splitseq[pos],"this is the pos"
             continue
         elif splitseq[pos] == "C":
             compliment.append("G")
@@ -114,11 +119,14 @@ def reverse_compliment(splitseq):
         elif splitseq[pos] == "T":
             compliment.append("A")
         else:
-            print pos,"<--- this is not G A C T "
             #compliment.append(pos)
-    print compliment
+            print "Not ATGC"
+    new_comp=[]
+    for seq in range(len(compliment)):
+        new_comp.append(compliment[::-1])
+        break
 
-    return 0
+    return new_comp
 
 
 if __name__== '__main__':

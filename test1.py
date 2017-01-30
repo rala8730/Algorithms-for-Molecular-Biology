@@ -2,11 +2,12 @@
 
 import sys, getopt, math, os.path, string
 
+sequence_name=[]
+sequences=[]
+output=[]
+
 def readInput(inFile):
 	File=open(inFile,'r')
-	sequence_name=[]
-	sequences=[]
-	output=[]
 	index=0
 	for line in File:
 		if line.startswith('>'):
@@ -36,7 +37,7 @@ def main(argv):
     lengthKmer = 0  # The length of the kmer
 
     try:
-        # go through the input parameters, make sure there is a -f, and -l option
+        # go through the input parameters, make sure there is a -f, and -k option
         opts, args = getopt.getopt(argv, "H:F:K:S:")
     # If one of the arguments is missing, print an error message and exit the program
     except getopt.GetoptError:
@@ -70,18 +71,41 @@ def main(argv):
     #store the array
     sequences=readInput(inputFile)
 
-
+#possible longest length of the string
 def k_mer(sequences):
-    for lines in sequences:
-        print sequences
+    splitted_line=[]
+    for lines in range(0,len(sequences)):
+        print lines
+        lines.split=splitted_line.append()
+        print splitted_line,"splitted"
+
 	return 0
 
 def reverse_compliment(sequences):
-	return 0
+    reverse_list=[]
+    for lines in sequences:
+        print lines
+	return lines
 
 def GC_content(sequence):
-	return 0
+    for lines in sequence:
+        print lines
+	return lines
 
 if __name__== '__main__':
     main(sys.argv[1:])
+    print "kmer-------"
+    k_mer(sequences)
+
+    #
+    # print "reverse comp++++++"
+    GC_content(sequences)
+
+    reverse_compliment(sequences)
+    #print "gccont+_+_++_+_+_+_+"
+
+
+
+
+
 

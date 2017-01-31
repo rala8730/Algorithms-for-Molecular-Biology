@@ -71,38 +71,45 @@ def main(argv):
     splitseq=splitedfoundseq(foundseq)
     GCcount=GC_content(splitseq)
 
-    kmermatch=k_mermatch(kmer, foundseq)
+    kmer_match=k_mermatch(kmer, foundseq) #Kmar match of sequence
+    reverse_seq(foundseq)
+    comp=compliment(kmer,foundseq)
 
-    revseq=reverse_seq(foundseq)
-
-    comp=compliment(kmer,revseq)
-
-    rev_kmermatch=revkmatch(kmer,revseq)
+    rev_kmer_match=k_mermatch(reverse_seq(kmer),foundseq)#rev kmer match of sequence
+    rev_kmer_and_comp_of_seq_match=k_mermatch(reverse_seq(kmer),compliment(kmer,foundseq)) #reverse kmer match of sequence compliment
 
     print "File:", inputFile
     print "Seq:", foundseq
-    print "rev comp:",comp
+    print "comp:",compliment(kmer,foundseq)
     print "seq length:", len(foundseq)
     print "Kmer:",kmer
-    print "kmermatchpos:",kmermatch,rev_kmermatch
+    print "kmermatchpos:",kmer_match,rev_kmer_match,rev_kmer_and_comp_of_seq_match
     print "GC count is :", GCcount,"%"
     #print "seqname", "foundseq", "kmermatch", "kmer", "forward", "id"
 
 
-    for match in range(0,len(kmermatch)):
-        print seqname,foundseq,kmermatch[match],kmer,"+",id
-    for match in range(0,len(rev_kmermatch)):
-        print seqname,foundseq,rev_kmermatch[match],kmer,"-",id
+    for match in range(0,len(kmer_match)):
+        print seqname," ","Rasmi"," ","match",kmer_match[match]," ",kmer_match[match]+len(kmer)," ","100"," ","+"," ","."
 
+    for match in range(0,len(rev_kmer_match)):
+        if kmer_match[match]!=rev_kmer_match[match]:
+            print seqname," ","Rasmi"," ", "match",rev_kmer_match[match]," ",rev_kmer_match[match]+len(kmer)," ","100"," ","+"," ","."
+
+    for match in range(0,len(rev_kmer_and_comp_of_seq_match)):
+        print seqname," ","Rasmi"," ","match",rev_kmer_and_comp_of_seq_match[match]," ",rev_kmer_and_comp_of_seq_match[match]+len(kmer)," ","100"," ","-"," ","."
+
+#search for the specific sequence
 def searchseq(seqname,sequences):
     for lines in sequences:
         if(lines[0]==seqname):
             return lines[1]
-
+#splits the sequence
 def splitedfoundseq(foundseq):
         split=foundseq.split()[0]
         return split
 
+
+#filters GG and finds the Gc content the GC content
 def GC_content(splitseq):
     count=0
     for pos in range(len(splitseq)-1):
@@ -114,7 +121,7 @@ def GC_content(splitseq):
     G_Ccount=(float(count) *100.0)/len(splitseq)
     return G_Ccount
 
-#possible longest length of the string
+#finds the position of the kmer in foundseqence
 def k_mermatch(kmer, foundseq):
     index=0
     matchpos=[]
@@ -125,15 +132,17 @@ def k_mermatch(kmer, foundseq):
 
     return matchpos
 
+#this function tkes the reverse of sequence
 def reverse_seq(foundseq):
     for seq in foundseq:
         reverse=foundseq[::-1]
-        print reverse,
+
         return reverse
 
-def compliment(kmer,revseq):
+#this function takes the compliment
+def compliment(kmer,foundseq):
     compliment=""
-    for seq in revseq:
+    for seq in foundseq:
         if seq=="G":
             seq="C"
             compliment=compliment+seq
@@ -148,20 +157,10 @@ def compliment(kmer,revseq):
             compliment=compliment+seq
         else:
             compliment=compliment+seq
-            print"finish converting to compliment not a single A, T, C, or G"
-    print compliment,"------compliment"
-    print revseq,"+++++reverseseq"
+            #print"finish converting to compliment not a single A, T, C, or G"
     return compliment
 
-def revkmatch(kmer,comp):
-
-    return k_mermatch(kmer,comp)
-
-
-#seq name 2) position match
-def Gffformat(seqname,foundsed,kmermatch,kmer,forward,id):
-    #gff= seqname,foundsed, kmermatch, kmer, forward, id
-    return 0
+#returns the ending position of the kmer
 
 
 if __name__== '__main__':

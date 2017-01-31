@@ -1,6 +1,6 @@
 #!/usr/bin/env/python
 
-import sys, getopt, math, os.path, string
+import sys, getopt, math, os.path, string,collections
 
 def readInput(inFile):
     File=open(inFile,'r')
@@ -63,29 +63,36 @@ def main(argv):
     # list in the variable sequences
 
     #store the array
-    forward = "forward"
     id = "ID"
-
 
     sequences=readInput(inputFile)
     foundseq = searchseq(seqname,sequences)
 
     splitseq=splitedfoundseq(foundseq)
     GCcount=GC_content(splitseq)
-    reversecomp=reverse_compliment(splitseq)
-    kmermatch=k_mermatch(kmer, foundseq)
-    gff=Gffformat(seqname, foundseq, kmermatch, kmer, forward, id)
 
+    kmermatch=k_mermatch(kmer, foundseq)
+
+    revseq=reverse_seq(foundseq)
+
+    comp=compliment(kmer,revseq)
+
+    rev_kmermatch=revkmatch(kmer,revseq)
 
     print "File:", inputFile
     print "Seq:", foundseq
+    print "rev comp:",comp
     print "seq length:", len(foundseq)
     print "Kmer:",kmer
-    print "kmermatchpos:",kmermatch
+    print "kmermatchpos:",kmermatch,rev_kmermatch
     print "GC count is :", GCcount,"%"
-    #print reverse_compliment(splitseq)
-    print Gffformat(seqname, foundseq, kmermatch, kmer, forward, id)
+    #print "seqname", "foundseq", "kmermatch", "kmer", "forward", "id"
 
+
+    for match in range(0,len(kmermatch)):
+        print seqname,foundseq,kmermatch[match],kmer,"+",id
+    for match in range(0,len(rev_kmermatch)):
+        print seqname,foundseq,rev_kmermatch[match],kmer,"-",id
 
 def searchseq(seqname,sequences):
     for lines in sequences:
@@ -103,8 +110,8 @@ def GC_content(splitseq):
            count=count+1
         elif (splitseq[pos]=="T" and splitseq[pos+1]=="A") or (splitseq[pos]=="A" and splitseq[pos+1]=="T"):
             count = count+1
-    count=count -1
-    G_Ccount=(float(count) *100)/len(splitseq)
+    count=count -1 +0.0
+    G_Ccount=(float(count) *100.0)/len(splitseq)
     return G_Ccount
 
 #possible longest length of the string
@@ -115,32 +122,45 @@ def k_mermatch(kmer, foundseq):
         if kmer==foundseq[index:index+len(kmer)]:
             matchpos.append(index)
         index=index+ 1
+
     return matchpos
 
-def reverse_compliment(splitseq):
-    compliment=[]
-    for pos in range(len(splitseq)):
-        if splitseq[pos]=="G":
-            compliment.append("C")
-            continue
-        elif splitseq[pos] == "C":
-            compliment.append("G")
-            continue
-        elif splitseq[pos] == "A":
-            compliment.append("T")
-        elif splitseq[pos] == "T":
-            compliment.append("A")
-        else:
-            #compliment.append(pos)
-            print "Not ATGC"
-    new_comp=[]
-    for seq in range(len(compliment)):
-        new_comp.append(compliment[::-1])
-        break
+def reverse_seq(foundseq):
+    for seq in foundseq:
+        reverse=foundseq[::-1]
+        print reverse,
+        return reverse
 
-    return new_comp
+def compliment(kmer,revseq):
+    compliment=""
+    for seq in revseq:
+        if seq=="G":
+            seq="C"
+            compliment=compliment+seq
+        elif seq=="C":
+            seq="G"
+            compliment=compliment+seq
+        elif seq=="A":
+            seq="T"
+            compliment=compliment+seq
+        elif seq=="T":
+            seq=="A"
+            compliment=compliment+seq
+        else:
+            compliment=compliment+seq
+            print"finish converting to compliment not a single A, T, C, or G"
+    print compliment,"------compliment"
+    print revseq,"+++++reverseseq"
+    return compliment
+
+def revkmatch(kmer,comp):
+
+    return k_mermatch(kmer,comp)
+
+
 #seq name 2) position match
 def Gffformat(seqname,foundsed,kmermatch,kmer,forward,id):
+    #gff= seqname,foundsed, kmermatch, kmer, forward, id
     return 0
 
 

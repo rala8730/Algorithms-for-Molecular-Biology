@@ -25,11 +25,11 @@ def readInput(inFile):
 
 def usage():
 	# print the usage of the application
-    #print 'python Rasmi_lamichhane_hw1.py -F <filename> -S <seq-name> -K <kmer>'
+    print 'python Rasmi_lamichhane_hw1.py -F <filename> -S <seq-name> -K <kmer>'
     #print "where -F specifies the .txt fasta file to be read and analyzed,"
     #print "-K is the size of kmer to search for"
     #print "and -S is the Sequence."
-    print "-----------------------------------------"
+    print ""
 def main(argv):
 
     try:
@@ -63,8 +63,6 @@ def main(argv):
     # list in the variable sequences
 
     #store the array
-    id = "ID"
-
     sequences=readInput(inputFile)
     foundseq = searchseq(seqname,sequences)
 
@@ -81,20 +79,21 @@ def main(argv):
     print "File:", inputFile
     print "Seq:", foundseq
     print "comp:",compliment(kmer,foundseq)
-    print "seq length:", len(foundseq)
+    #print "seq length:", len(foundseq)
     print "Kmer:",kmer
     print "kmermatchpos:",kmer_match,rev_kmer_match,rev_kmer_and_comp_of_seq_match
     print "GC count is :", GCcount,"%"
-    #print "seqname", "foundseq", "kmermatch", "kmer", "forward", "id"
 
-
+    #prints the GFF for the Kmer match with sequence
     for match in range(0,len(kmer_match)):
         print seqname," ","Rasmi"," ","match",kmer_match[match]," ",kmer_match[match]+len(kmer)," ","100"," ","+"," ","."
 
+    #prints the GFF for the rev kmer and sequence
     for match in range(0,len(rev_kmer_match)):
         if kmer_match[match]!=rev_kmer_match[match]:
             print seqname," ","Rasmi"," ", "match",rev_kmer_match[match]," ",rev_kmer_match[match]+len(kmer)," ","100"," ","+"," ","."
 
+    #prints the GFF for the rev kmer and sequence compliment
     for match in range(0,len(rev_kmer_and_comp_of_seq_match)):
         print seqname," ","Rasmi"," ","match",rev_kmer_and_comp_of_seq_match[match]," ",rev_kmer_and_comp_of_seq_match[match]+len(kmer)," ","100"," ","-"," ","."
 
@@ -153,14 +152,11 @@ def compliment(kmer,foundseq):
             seq="T"
             compliment=compliment+seq
         elif seq=="T":
-            seq=="A"
+            seq="A"
             compliment=compliment+seq
         else:
             compliment=compliment+seq
-            #print"finish converting to compliment not a single A, T, C, or G"
     return compliment
-
-#returns the ending position of the kmer
 
 
 if __name__== '__main__':

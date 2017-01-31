@@ -25,11 +25,11 @@ def readInput(inFile):
 
 def usage():
 	# print the usage of the application
-    print 'python Rasmi_lamichhane_hw1.py -F <filename> -S <seq-name> -K <kmer>'
+    #print 'python Rasmi_lamichhane_hw1.py -F <filename> -S <seq-name> -K <kmer>'
     #print "where -F specifies the .txt fasta file to be read and analyzed,"
     #print "-K is the size of kmer to search for"
     #print "and -S is the Sequence."
-
+    print "-----------------------------------------"
 def main(argv):
 
     try:
@@ -63,25 +63,35 @@ def main(argv):
     # list in the variable sequences
 
     #store the array
+    forward = "forward"
+    id = "ID"
+
+
     sequences=readInput(inputFile)
     foundseq = searchseq(seqname,sequences)
 
     splitseq=splitedfoundseq(foundseq)
     GCcount=GC_content(splitseq)
     reversecomp=reverse_compliment(splitseq)
-    kmercount=k_mer(kmer, foundseq)
+    kmermatch=k_mermatch(kmer, foundseq)
+    gff=Gffformat(seqname, foundseq, kmermatch, kmer, forward, id)
+
 
     print "File:", inputFile
     print "Seq:", foundseq
     print "seq length:", len(foundseq)
     print "Kmer:",kmer
-    print "kmercount:",kmercount
+    print "kmermatchpos:",kmermatch
     print "GC count is :", GCcount,"%"
+    #print reverse_compliment(splitseq)
+    print Gffformat(seqname, foundseq, kmermatch, kmer, forward, id)
+
 
 def searchseq(seqname,sequences):
     for lines in sequences:
         if(lines[0]==seqname):
             return lines[1]
+
 def splitedfoundseq(foundseq):
         split=foundseq.split()[0]
         return split
@@ -98,12 +108,14 @@ def GC_content(splitseq):
     return G_Ccount
 
 #possible longest length of the string
-def k_mer(kmer, foundseq):
-    count=0
-    for pos in range(len(foundseq)-len(kmer)-1):
-        if kmer==foundseq[pos:+len(kmer)-1]:
-            count=count+ 1
-    return count
+def k_mermatch(kmer, foundseq):
+    index=0
+    matchpos=[]
+    for pos in range(len(foundseq)-len(kmer)+1):
+        if kmer==foundseq[index:index+len(kmer)]:
+            matchpos.append(index)
+        index=index+ 1
+    return matchpos
 
 def reverse_compliment(splitseq):
     compliment=[]
@@ -127,6 +139,9 @@ def reverse_compliment(splitseq):
         break
 
     return new_comp
+#seq name 2) position match
+def Gffformat(seqname,foundsed,kmermatch,kmer,forward,id):
+    return 0
 
 
 if __name__== '__main__':

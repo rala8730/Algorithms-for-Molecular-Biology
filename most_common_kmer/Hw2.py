@@ -44,55 +44,51 @@ def main(argv):
                 usage()
                 sys.exit(2)
         if opt == '-K':
-            kmerlen = arg
+            kmerlen = int(arg)
 
     # Run the readInput function to format the input file. Store the returned
     # list in the variable sequences
 
     # store the array
-    sequences = readInput(inputFile)
-    foundseq = searchseq(kmerlen,sequences)
-
-    if kmerlen is not None:
-        if kmerlen<len(sequences):
-            search_seq=sequences(kmerlen,sequences)
-            if foundseq is not None:
-                splitseq = splitedfoundseq(foundseq)
-            else:
-                print "No sequence found to do the operation"
+    sequences= readInput(inputFile)
+    if kmerlen<=len(sequences):
+        search_sq=search_seq(sequences)
+        kmer=makingkmer(kmerlen,search_sq)
+        count=kmer_and_count(kmer)
     else:
         print "ERROR: length of kmer is greater than length of sequence"
 
-
-
-# search for the specific sequence
-def searchseq(kmerlen,sequences):
+def search_seq(sequences):
+    i=0
     for lines in sequences:
-        if (kmerlen>0):
-            #print lines[1]
-            return lines[1]
-def search_seq(kmerlen, sequences):
-    print "hello"
-    for lines in sequences:
+        seq=sequences[i]
+    i=i+1
+    return seq
+def makingkmer(kmerlen,search_sq):
+    print len(search_sq),"-=-",search_sq
+    kmer=[]
+    j=0
+    k=kmerlen
+    i=0
+    j=kmerlen
+    for DNA in search_sq:
+        if (j<=len(search_sq)):
+            kmer.append(search_sq[i:j])
+            i = i + 1
+            j = j + 1
 
-        if (kmerlen==len(sequences)):
-            return sequences
-        else:
-            print "operation for > kmer"
+    return kmer
 
+def kmer_and_count(kmer):
+    count=0
+    for i in range(0,len(kmer)-1):
+        if(kmer[i]==kmer[i+1]):
+            count=+1
+            #print kmer,count
     return 0
 
 
-# splits the sequence
-def splitedfoundseq(foundseq):
 
-    if foundseq is not None:
-        split = foundseq.split()
-
-        return split
-    else:
-        print "No seq found"
-        return 0
 
 if __name__ == '__main__':
     main(sys.argv[1:])

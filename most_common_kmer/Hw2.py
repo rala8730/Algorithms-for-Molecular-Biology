@@ -7,23 +7,10 @@ def readInput(inFile):
     File = open(inFile, 'r')
     sequences = []
     output = []
-    myseq=[]
-
-    index = 0
     for line in File:
-        if line.startswith('>'):
-            if index >= 1:
-                sequences.append(seq)
-                myseq.append(seq)
-            index += 1
-            print myseq,"seq"
-            seq = ' '
-        else:
-            seq += line.rstrip('\n')
-        output.append(seq)
-        #print output
+        if not line.startswith('>'):
+             output.append(line.rstrip())
     return output
-
 
 def usage():
     # print the usage of the application
@@ -31,7 +18,8 @@ def usage():
     # print "where -F specifies the .txt fasta file to be read and analyzed,"
     # print "-K is the size of kmer to search for"
     # print "and -S is the Sequence."
-    print ""
+    #
+    # print ""
 
 
 def main(argv):
@@ -63,13 +51,9 @@ def main(argv):
 
     # store the array
     sequences = readInput(inputFile)
-
     foundseq = searchseq(kmerlen,sequences)
 
     if kmerlen is not None:
-        print len(sequences),"+_+_+_"
-
-
         if kmerlen<len(sequences):
             search_seq=sequences(kmerlen,sequences)
             if foundseq is not None:

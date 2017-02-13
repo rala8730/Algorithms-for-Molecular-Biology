@@ -58,8 +58,7 @@ def main(argv):
             search_sq=search_seq(sequences)
             kmer=makingkmer(kmerlen,search_sq)
             count=kmer_count(kmer,search_sq)
-            #
-            # print count
+            mostcommonkmer(sequences,kmerlen)
     else:
         print "ERROR: length of sequence is None"
 
@@ -67,7 +66,6 @@ def search_seq(sequences):
     i=0
     for lines in sequences:
         seq=sequences[i]
-    i=i+1
     return seq
 def makingkmer(kmerlen,search_sq):
     kmer=[]
@@ -87,8 +85,16 @@ def kmer_count(kmer,search_sq):
     kmer_n_count={}
     for i in range(0,len(kmer)):
         kmer_n_count[kmer[i]] = kmer.count(kmer[i])
-    #print kmer_n_count
     return kmer_n_count
+
+def mostcommonkmer(sequences,kmerlen):
+    for i in range (len(sequences)):
+        print sequences[i]
+        #print makingkmer(kmerlen,sequences[i])
+        print kmer_count(makingkmer(kmerlen,sequences[i]),sequences[i])
+
+
+    return 0
 
 
 

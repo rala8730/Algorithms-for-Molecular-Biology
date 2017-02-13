@@ -1,6 +1,7 @@
 #!/usr/bin/env/python
 
 import sys, getopt, math, os.path, string, collections
+import numpy
 
 
 def readInput(inFile):
@@ -14,7 +15,7 @@ def readInput(inFile):
 
 def usage():
     # print the usage of the application
-    print 'python Rasmi_lamichhane_hw1.py -F <filename> -S <seq-name> -K <kmer>'
+    print 'python Rasmi_lamichhane_hw2.py -F <filename> -S <seq-name> -K <kmer>'
     # print "where -F specifies the .txt fasta file to be read and analyzed,"
     # print "-K is the size of kmer to search for"
     # print "and -S is the Sequence."
@@ -58,7 +59,8 @@ def main(argv):
             search_sq=search_seq(sequences)
             kmer=makingkmer(kmerlen,search_sq)
             count=kmer_count(kmer,search_sq)
-            mostcommonkmer(sequences,kmerlen)
+            mostcommonkmer_in_allseq(sequences,kmerlen)
+            mostcommon_in_mostseq(sequences, kmerlen)
     else:
         print "ERROR: length of sequence is None"
 
@@ -67,6 +69,7 @@ def search_seq(sequences):
     for lines in sequences:
         seq=sequences[i]
     return seq
+
 def makingkmer(kmerlen,search_sq):
     kmer=[]
     j=0
@@ -87,14 +90,42 @@ def kmer_count(kmer,search_sq):
         kmer_n_count[kmer[i]] = kmer.count(kmer[i])
     return kmer_n_count
 
-def mostcommonkmer(sequences,kmerlen):
+def mostcommonkmer_in_allseq(sequences,kmerlen):
+    countt={}
     for i in range (len(sequences)):
-        print sequences[i]
-        #print makingkmer(kmerlen,sequences[i])
-        print kmer_count(makingkmer(kmerlen,sequences[i]),sequences[i])
+        count_result=kmer_count(makingkmer(kmerlen,sequences[i]),sequences[i])
+        for key,value in count_result.items():
+            if countt.has_key(key):
+                countt[key]=countt[key]+value
+            else:
+                countt[key]=value
+    print "K-mers","Occurences"
+    count = 0
+    for items in sorted(countt.items(), key=lambda x: x[1],reverse=True):
+        if count<5:
+            print items[0],"     ",items[1]
+        else:
+            break
+        count=count+1
 
+def mostcommon_in_mostseq(sequences,kmerlen):
+    all_kmer_dict={}
+    for item in range((len(sequences))):
+        all_kmer_list=numpy.unique(makingkmer(kmerlen,sequences[item]))
+        for key in all_kmer_list:
+            if all_kmer_dict.has_key(key):
+                all_kmer_dict[key]=all_kmer_dict[key]+1
+            else:
+                all_kmer_dict[key]=1
 
-    return 0
+    print "K-mers", "seq Count"
+    count = 0
+    for items in sorted(all_kmer_dict.items(), key=lambda x: x[1], reverse=True):
+        if count < 5:
+            print items[0], "     ", items[1]
+        else:
+            break
+        count = count + 1
 
 
 

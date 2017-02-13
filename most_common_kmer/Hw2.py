@@ -51,12 +51,17 @@ def main(argv):
 
     # store the array
     sequences= readInput(inputFile)
-    if kmerlen<=len(sequences):
-        search_sq=search_seq(sequences)
-        kmer=makingkmer(kmerlen,search_sq)
-        count=kmer_and_count(kmer)
+    if len(sequences) is not None:
+        if (kmerlen<3 or kmerlen>8 ):
+            print "length of kmer should be 3-8"
+        else:
+            search_sq=search_seq(sequences)
+            kmer=makingkmer(kmerlen,search_sq)
+            count=kmer_count(kmer,search_sq)
+            #
+            # print count
     else:
-        print "ERROR: length of kmer is greater than length of sequence"
+        print "ERROR: length of sequence is None"
 
 def search_seq(sequences):
     i=0
@@ -65,7 +70,6 @@ def search_seq(sequences):
     i=i+1
     return seq
 def makingkmer(kmerlen,search_sq):
-    print len(search_sq),"-=-",search_sq
     kmer=[]
     j=0
     k=kmerlen
@@ -79,13 +83,12 @@ def makingkmer(kmerlen,search_sq):
 
     return kmer
 
-def kmer_and_count(kmer):
-    count=0
-    for i in range(0,len(kmer)-1):
-        if(kmer[i]==kmer[i+1]):
-            count=+1
-            #print kmer,count
-    return 0
+def kmer_count(kmer,search_sq):
+    kmer_n_count={}
+    for i in range(0,len(kmer)):
+        kmer_n_count[kmer[i]] = kmer.count(kmer[i])
+    #print kmer_n_count
+    return kmer_n_count
 
 
 

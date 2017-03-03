@@ -18,7 +18,7 @@ def readInput(inFile):
 
 def usage():
     # print the usage of the application
-    print 'python Rasmi_lamichhane_hw2.py -F <filename> -S <seq-name> -K <kmer>'
+    print 'python hw2.py -F <filename> -L <kmer>'
     # print "where -F specifies the .txt fasta file to be read and analyzed,"
     # print "-K is the size of kmer to search for"
     # print "and -S is the Sequence."
@@ -28,9 +28,9 @@ def usage():
 #speed=O(opt)
 def main(argv):
     try:
-        opts, args = getopt.getopt(argv, "H:F:K:S:")
+        opts, args = getopt.getopt(argv, "H:F:L:")
     except getopt.GetoptError:
-        print "ERROR! An input file (-F) and a length of a kmer (-K) must be specified. Correct usage:"
+        print "ERROR! An input file (-F) and a length of a kmer (-L) must be specified. Correct usage:"
         usage()
         sys.exit(2)
     for opt, arg in opts:
@@ -47,7 +47,7 @@ def main(argv):
                 print "ERROR! Input file must exist. Correct usage:"
                 usage()
                 sys.exit(2)
-        if opt == '-K':
+        if opt == '-L':
             kmerlen = int(arg)
 
     # Run the readInput function to format the input file. Store the returned
@@ -130,7 +130,6 @@ def mostcommon_in_mostseq(sequences,kmerlen):
     all_kmer_dict={}
     for item in range((len(sequences))):
         all_kmer_list=numpy.unique(makingkmer(kmerlen,sequences[item]))
-        print all_kmer_list
         for key in all_kmer_list:
             if all_kmer_dict.has_key(key):
                 all_kmer_dict[key]=all_kmer_dict[key]+1

@@ -1,8 +1,11 @@
 #!/usr/bin/env/python
+#Rasmi Lamichhane Hw2
 
 import sys, getopt, math, os.path, string, collections
 import numpy
 
+#reads the file
+#speed=O(lines)
 
 def readInput(inFile):
     File = open(inFile, 'r')
@@ -22,7 +25,7 @@ def usage():
     #
     # print ""
 
-
+#speed=O(opt)
 def main(argv):
     try:
         opts, args = getopt.getopt(argv, "H:F:K:S:")
@@ -64,12 +67,17 @@ def main(argv):
     else:
         print "ERROR: length of sequence is None"
 
+
+#this gives 1st sequence of the sequence and i made this to practice making kmer and kmer count function
+#speed=O(lines)
 def search_seq(sequences):
     i=0
     for lines in sequences:
         seq=sequences[i]
-    return seq
+        return seq
 
+#this function makes the kmer for a given sequence and returns the kmer
+#speed=O(DNA)
 def makingkmer(kmerlen,search_sq):
     kmer=[]
     j=0
@@ -84,12 +92,18 @@ def makingkmer(kmerlen,search_sq):
 
     return kmer
 
+#this function counts the occurence of kmer in a given sequence
+#speed=O(len(kmer))
 def kmer_count(kmer,search_sq):
     kmer_n_count={}
     for i in range(0,len(kmer)):
         kmer_n_count[kmer[i]] = kmer.count(kmer[i])
     return kmer_n_count
 
+
+#this function finds the most common kmer in all sequence and counts the occurance of
+# it by using the helper function kmercount and makingkmer
+#speed=O(key)*O(len(sequence))=O(key*len(sequence))
 def mostcommonkmer_in_allseq(sequences,kmerlen):
     countt={}
     for i in range (len(sequences)):
@@ -108,10 +122,15 @@ def mostcommonkmer_in_allseq(sequences,kmerlen):
             break
         count=count+1
 
+
+#this function counts the most commen knmer for most sequence and counts
+# using the helper function makingkmer and numpy.unique
+#speed=O(len(sequence))*O(key)=O(len(sequence)*key)
 def mostcommon_in_mostseq(sequences,kmerlen):
     all_kmer_dict={}
     for item in range((len(sequences))):
         all_kmer_list=numpy.unique(makingkmer(kmerlen,sequences[item]))
+        print all_kmer_list
         for key in all_kmer_list:
             if all_kmer_dict.has_key(key):
                 all_kmer_dict[key]=all_kmer_dict[key]+1
@@ -121,6 +140,7 @@ def mostcommon_in_mostseq(sequences,kmerlen):
     print "K-mers", "seq Count"
     count = 0
     for items in sorted(all_kmer_dict.items(), key=lambda x: x[1], reverse=True):
+
         if count < 5:
             print items[0], "     ", items[1]
         else:
@@ -132,3 +152,8 @@ def mostcommon_in_mostseq(sequences,kmerlen):
 
 if __name__ == '__main__':
     main(sys.argv[1:])
+
+
+#What are the speed and memory limitations of your implementations?
+#the speed for each function is written above the function on the  comments
+#there are most 4^k slots with k from 3-8 so  memory would consumeat k*4^k bytes

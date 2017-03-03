@@ -2,7 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="141d6d6f-b41e-4fbc-a959-de44632b492e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test1.py" afterPath="$PROJECT_DIR$/test1.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ScoringMatrix.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/alignment_test.fa" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/large_sample.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mixed_alphabet.fa" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mixed_alphabet.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/Okeson_Sample.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/Rasmi_HW1.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/ScoringMatrix.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/large_sample.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/mixed_alphabet.fa" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/mixed_alphabet.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/proteins.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/sample_10_200bp_seq.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/sample_5mer.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/small_seq_1000.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/most_common_kmer/spaced.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/proteins.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sample_10_200bp_seq.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sample_5mer.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/small_seq_1000.fasta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/spaced.fasta" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/most_common_kmer/.idea/workspace.xml" afterPath="$PROJECT_DIR$/most_common_kmer/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/most_common_kmer/Hw2.py" afterPath="$PROJECT_DIR$/most_common_kmer/Hw2.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +40,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test1.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1230">
-              <caret line="82" column="19" lean-forward="true" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
+            <state relative-caret-position="0">
+              <caret line="82" column="19" lean-forward="false" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hw3.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Local and Global Alignment of the sequences/Hw3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="485">
+              <caret line="70" column="18" lean-forward="false" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -42,12 +75,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/test1.py" />
+        <option value="$PROJECT_DIR$/Local and Global Alignment of the sequences/Hw3.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="y" value="50" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -73,6 +108,34 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="algorithms-for-molecular-biology" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithms-for-molecular-biology" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithms-for-molecular-biology" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="most_common_kmer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithms-for-molecular-biology" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="algorithms-for-molecular-biology" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Local and Global Alignment of the sequences" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -261,7 +324,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="50" width="1440" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14652778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -315,13 +378,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/small_seq_1000.fasta">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/small_seq_1000.fasta" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -329,24 +386,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/Okeson_Sample (1).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="60" column="89" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="60" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spaced.fasta">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Okeson_Sample (1).py" />
+    <entry file="file://$PROJECT_DIR$/spaced.fasta" />
     <entry file="file://$PROJECT_DIR$/test1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="82" column="19" lean-forward="true" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
+        <state relative-caret-position="0">
+          <caret line="82" column="19" lean-forward="false" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/most_common_kmer/Hw2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="130" column="20" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Local and Global Alignment of the sequences/Hw3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="70" column="18" lean-forward="false" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
           <folding />
         </state>
       </provider>
